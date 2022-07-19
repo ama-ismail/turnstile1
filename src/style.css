@@ -1,5 +1,6 @@
 body {
-  background-color: #9DF9EF;
+  background-color: #0072BB;
+  color: white;
   text-align: center;
 }
 
@@ -8,21 +9,83 @@ p {
   margin: auto;
   padding: 15px;
   border-radius: 20px;
-  background-color: rgb(255,228,196);
+  color: #FFFFFF;
+  background-color: #00C5CD;
+}
+
+i {
+  display: none;
+}
+
+button {
+  margin: 20px;
+  border-radius: 10px;
+}
+
+.turnstile {
+  position: relative;
+  top: 15vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.but {
+  width: 300px;
+  margin: 15px;
+  border: 2px solid gray;
+  padding: 15px;
+  border-radius: 20px;
+  color: #FFFFFF;
+  background-color: #00C5CD;
 }
 
 .level {
   width: 200px;
   border: 2px solid gray;
-  margin: auto;
+  margin: 20px;
   padding: 15px;
   border-radius: 20px;
-  background-color: rgb(255,228,196);
+  color: #FFFFFF;
+  background-color: #00C5CD;
+}
+
+.imgEnd {
+  display: none;
+  position: absolute;
+  top: 30%;
+  right: 0px;
+}
+
+.hide {
+  display: none;
+}
+
+.beginner {
+  background-color: #8DB600 !important;
+}
+
+.intermediate {
+  background-color: #DAA520 !important;
+}
+
+.advanced {
+  background-color: #00C5CD !important;
+}
+
+.expert {
+  background-color: #E03C31 !important;
+}
+
+.win {
+  position: relative;
+  top: 40vh;
 }
 
 a, a:hover {
   text-decoration: none;
-  color: black;
+  color: #FFFFFF;
 }
 
 h1 {

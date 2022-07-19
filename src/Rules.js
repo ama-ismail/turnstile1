@@ -1,10 +1,11 @@
 import "./style.css";
+import { Outlet, Link } from "react-router-dom";
 
 function Rules() {
   return (
     <div className="container">
       <h1>ТУРНИКЕТ</h1>
-      <p style={{width: "500px", textAlign: "start"}}>
+      <p style={{width: "520px", textAlign: "start"}}>
         <b>ЦЕЛЬ ИГРЫ:</b>
         <br /> Привести все цветные фишки в углы соответствующего цвета!
         <br /> <br />
@@ -42,6 +43,7 @@ function Rules() {
         <br /> заново! Пошаговое решение каждого задания показано на
         <br /> обратной стороне карточки с заданием.
       </p>
+      <button type="button"><Link to="/"style={{color: "black"}}>Назад</Link></button>
     </div>
   );
 }

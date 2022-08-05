@@ -735,6 +735,78 @@ export default function L10(props) {
       }
     }
 
+    function funcLeft(num, numPos, string) {
+      if(blue[numPos - 1] === 0 && purple[numPos - 1] === 0 && orange[numPos - 1] === 0 && green[numPos - 1] === 0
+        && gray1[numPos - 1] === 0 && gray2[numPos - 1] === 0 && gray3[numPos - 1] === 0 && gray4[numPos - 1] === 0
+        && numPos % 3 !== 0){
+        turnMoveLeft(numPos);
+        if(allow === 1){
+          num[numPos] = 0;
+          $(`.circle${numPos + 1}`).removeClass(string);
+          numPos--;
+          num[numPos] = 1;
+          $(`.circle${numPos + 1}`).addClass(string);
+          win();
+        } else{
+          allow = 1;
+        }
+      }
+    }
+
+    function funcUp(num, numPos, string) {
+      if(blue[numPos - 3] === 0 && purple[numPos - 3] === 0 && orange[numPos - 3] === 0 && green[numPos - 3] === 0
+        && gray1[numPos - 3] === 0 && gray2[numPos - 3] === 0 && gray3[numPos - 3] === 0 && gray4[numPos - 3] === 0
+        && numPos >= 3){
+        turnMoveUp(numPos);
+        if(allow === 1){
+          num[numPos] = 0;
+          $(`.circle${numPos + 1}`).removeClass(string);
+          numPos-=3;
+          num[numPos] = 1;
+          $(`.circle${numPos + 1}`).addClass(string);
+          win();
+        } else{
+          allow = 1;
+        }
+      }
+    }
+
+    function funcRight(num, numPos, string) {
+      if(blue[numPos + 1] === 0 && purple[numPos + 1] === 0 && orange[numPos + 1] === 0 && green[numPos + 1] === 0
+        && gray1[numPos + 1] === 0 && gray2[numPos + 1] === 0 && gray3[numPos + 1] === 0 && gray4[numPos + 1] === 0
+        && numPos % 3 !== 2){
+        turnMoveRight(numPos);
+        if(allow === 1){
+          num[numPos] = 0;
+          $(`.circle${numPos + 1}`).removeClass(string);
+          numPos++;
+          num[numPos] = 1;
+          $(`.circle${numPos + 1}`).addClass(string);
+          win();
+        } else{
+          allow = 1;
+        }
+      }
+    }
+
+    function funcDown(num, numPos, string) {
+      if(blue[numPos + 3] === 0 && purple[numPos + 3] === 0 && orange[numPos + 3] === 0 && green[numPos + 3] === 0
+        && gray1[numPos + 3] === 0 && gray2[numPos + 3] === 0 && gray3[numPos + 3] === 0 && gray4[numPos + 3] === 0
+        && numPos <= 5){
+        turnMoveDown(numPos);
+        if(allow === 1){
+          num[numPos] = 0;
+          $(`.circle${numPos + 1}`).removeClass(string);
+          numPos+=3;
+          num[numPos] = 1;
+          $(`.circle${numPos + 1}`).addClass(string);
+          win();
+        } else{
+          allow = 1;
+        }
+      }
+    }
+
     $(`.support1`).addClass("support");
     $(`.support2`).addClass("support");
     $(`.support3`).addClass("support");
@@ -752,7 +824,354 @@ export default function L10(props) {
     support2Move();
     support3Move();
     support4Move();
+    $(".blue").click(function(){
+      chip = 1;
+    });
+    $(".purple").click(function(){
+      chip = 2;
+    });
+    $(".orange").click(function(){
+      chip = 3;
+    });
+    $(".green").click(function(){
+      chip = 4;
+    });
+    $(".gray1").click(function(){
+      chip = 5;
+    });
+    $(".gray2").click(function(){
+      chip = 6;
+    });
+    $(".gray3").click(function(){
+      chip = 7;
+    });
+    $(".gray4").click(function(){
+      chip = 8;
+    });
+    $(".LEFT").click(function(){
+      if(chip === 1 && bluePos !== -1){
+        funcLeft(blue, bluePos, "blue");
+        blueMove();
+      }
+      else if(chip === 2 && purplePos !== -1){
+        funcLeft(purple, purplePos, "purple");
+        purpleMove();
+      }
+      else if(chip === 3 && orangePos !== -1){
+        funcLeft(orange, orangePos, "orange");
+        orangeMove();
+      }
+      else if(chip === 4 && greenPos !== -1){
+        funcLeft(green, greenPos, "green");
+        greenMove();
+      }
+      else if(chip === 5 && gray1Pos !== -1){
+        funcLeft(gray1, gray1Pos, "gray1");
+        gray1Move();
+      }
+      else if(chip === 6 && gray2Pos !== -1){
+        funcLeft(gray2, gray2Pos, "gray2");
+        gray2Move();
+      }
+      else if(chip === 7 && gray3Pos !== -1){
+        funcLeft(gray3, gray3Pos, "gray3");
+        gray3Move();
+      }
+      else if(chip === 8 && gray4Pos !== -1){
+        funcLeft(gray4, gray4Pos, "gray4");
+        gray4Move();
+      }
+      win();
+      number();
+    });
+    $(".UP").click(function(){
+      if(chip === 1 && bluePos !== -1){
+        funcUp(blue, bluePos, "blue");
+        blueMove();
+      }
+      else if(chip === 2 && purplePos !== -1){
+        funcUp(purple, purplePos, "purple");
+        purpleMove();
+      }
+      else if(chip === 3 && orangePos !== -1){
+        funcUp(orange, orangePos, "orange");
+        orangeMove();
+      }
+      else if(chip === 4 && greenPos !== -1){
+        funcUp(green, greenPos, "green");
+        greenMove();
+      }
+      else if(chip === 5 && gray1Pos !== -1){
+        funcUp(gray1, gray1Pos, "gray1");
+        gray1Move();
+      }
+      else if(chip === 6 && gray2Pos !== -1){
+        funcUp(gray2, gray2Pos, "gray2");
+        gray2Move();
+      }
+      else if(chip === 7 && gray3Pos !== -1){
+        funcUp(gray3, gray3Pos, "gray3");
+        gray3Move();
+      }
+      else if(chip === 8 && gray4Pos !== -1){
+        funcUp(gray4, gray4Pos, "gray4");
+        gray4Move();
+      }
+      win();
+      number();
+    });
+    $(".RIGHT").click(function(){
+      if(chip === 1 && bluePos !== -1){
+        funcRight(blue, bluePos, "blue");
+        blueMove();
+      }
+      else if(chip === 2 && purplePos !== -1){
+        funcRight(purple, purplePos, "purple");
+        purpleMove();
+      }
+      else if(chip === 3 && orangePos !== -1){
+        funcRight(orange, orangePos, "orange");
+        orangeMove();
+      }
+      else if(chip === 4 && greenPos !== -1){
+        funcRight(green, greenPos, "green");
+        greenMove();
+      }
+      else if(chip === 5 && gray1Pos !== -1){
+        funcRight(gray1, gray1Pos, "gray1");
+        gray1Move();
+      }
+      else if(chip === 6 && gray2Pos !== -1){
+        funcRight(gray2, gray2Pos, "gray2");
+        gray2Move();
+      }
+      else if(chip === 7 && gray3Pos !== -1){
+        funcRight(gray3, gray3Pos, "gray3");
+        gray3Move();
+      }
+      else if(chip === 8 && gray4Pos !== -1){
+        funcRight(gray4, gray4Pos, "gray4");
+        gray4Move();
+      }
+      win();
+      number();
+    });
+    $(".DOWN").click(function(){
+      if(chip === 1 && bluePos !== -1){
+        funcDown(blue, bluePos, "blue");
+        blueMove();
+      }
+      else if(chip === 2 && purplePos !== -1){
+        funcDown(purple, purplePos, "purple");
+        purpleMove();
+      }
+      else if(chip === 3 && orangePos !== -1){
+        funcDown(orange, orangePos, "orange");
+        orangeMove();
+      }
+      else if(chip === 4 && greenPos !== -1){
+        funcDown(green, greenPos, "green");
+        greenMove();
+      }
+      else if(chip === 5 && gray1Pos !== -1){
+        funcDown(gray1, gray1Pos, "gray1");
+        gray1Move();
+      }
+      else if(chip === 6 && gray2Pos !== -1){
+        funcDown(gray2, gray2Pos, "gray2");
+        gray2Move();
+      }
+      else if(chip === 7 && gray3Pos !== -1){
+        funcDown(gray3, gray3Pos, "gray3");
+        gray3Move();
+      }
+      else if(chip === 8 && gray4Pos !== -1){
+        funcDown(gray4, gray4Pos, "gray4");
+        gray4Move();
+      }
+      win();
+      number();
+    });
     $(document).keyup(function(e){
+      $(".blue").click(function(){
+        chip = 1;
+      });
+      $(".purple").click(function(){
+        chip = 2;
+      });
+      $(".orange").click(function(){
+        chip = 3;
+      });
+      $(".green").click(function(){
+        chip = 4;
+      });
+      $(".gray1").click(function(){
+        chip = 5;
+      });
+      $(".gray2").click(function(){
+        chip = 6;
+      });
+      $(".gray3").click(function(){
+        chip = 7;
+      });
+      $(".gray4").click(function(){
+        chip = 8;
+      });
+      $(".LEFT").click(function(){
+        if(chip === 1 && bluePos !== -1){
+          funcLeft(blue, bluePos, "blue");
+          blueMove();
+        }
+        else if(chip === 2 && purplePos !== -1){
+          funcLeft(purple, purplePos, "purple");
+          purpleMove();
+        }
+        else if(chip === 3 && orangePos !== -1){
+          funcLeft(orange, orangePos, "orange");
+          orangeMove();
+        }
+        else if(chip === 4 && greenPos !== -1){
+          funcLeft(green, greenPos, "green");
+          greenMove();
+        }
+        else if(chip === 5 && gray1Pos !== -1){
+          funcLeft(gray1, gray1Pos, "gray1");
+          gray1Move();
+        }
+        else if(chip === 6 && gray2Pos !== -1){
+          funcLeft(gray2, gray2Pos, "gray2");
+          gray2Move();
+        }
+        else if(chip === 7 && gray3Pos !== -1){
+          funcLeft(gray3, gray3Pos, "gray3");
+          gray3Move();
+        }
+        else if(chip === 8 && gray4Pos !== -1){
+          funcLeft(gray4, gray4Pos, "gray4");
+          gray4Move();
+        }
+        win();
+        number();
+      });
+      $(".UP").click(function(){
+        if(chip === 1 && bluePos !== -1){
+          funcUp(blue, bluePos, "blue");
+          blueMove();
+        }
+        else if(chip === 2 && purplePos !== -1){
+          funcUp(purple, purplePos, "purple");
+          purpleMove();
+        }
+        else if(chip === 3 && orangePos !== -1){
+          funcUp(orange, orangePos, "orange");
+          orangeMove();
+        }
+        else if(chip === 4 && greenPos !== -1){
+          funcUp(green, greenPos, "green");
+          greenMove();
+        }
+        else if(chip === 5 && gray1Pos !== -1){
+          funcUp(gray1, gray1Pos, "gray1");
+          gray1Move();
+        }
+        else if(chip === 6 && gray2Pos !== -1){
+          funcUp(gray2, gray2Pos, "gray2");
+          gray2Move();
+        }
+        else if(chip === 7 && gray3Pos !== -1){
+          funcUp(gray3, gray3Pos, "gray3");
+          gray3Move();
+        }
+        else if(chip === 8 && gray4Pos !== -1){
+          funcUp(gray4, gray4Pos, "gray4");
+          gray4Move();
+        }
+        win();
+        number();
+      });
+      $(".RIGHT").click(function(){
+        if(chip === 1 && bluePos !== -1){
+          funcRight(blue, bluePos, "blue");
+          blueMove();
+        }
+        else if(chip === 2 && purplePos !== -1){
+          funcRight(purple, purplePos, "purple");
+          purpleMove();
+        }
+        else if(chip === 3 && orangePos !== -1){
+          funcRight(orange, orangePos, "orange");
+          orangeMove();
+        }
+        else if(chip === 4 && greenPos !== -1){
+          funcRight(green, greenPos, "green");
+          greenMove();
+        }
+        else if(chip === 5 && gray1Pos !== -1){
+          funcRight(gray1, gray1Pos, "gray1");
+          gray1Move();
+        }
+        else if(chip === 6 && gray2Pos !== -1){
+          funcRight(gray2, gray2Pos, "gray2");
+          gray2Move();
+        }
+        else if(chip === 7 && gray3Pos !== -1){
+          funcRight(gray3, gray3Pos, "gray3");
+          gray3Move();
+        }
+        else if(chip === 8 && gray4Pos !== -1){
+          funcRight(gray4, gray4Pos, "gray4");
+          gray4Move();
+        }
+        win();
+        number();
+      });
+      $(".DOWN").click(function(){
+        if(chip === 1 && bluePos !== -1){
+          funcDown(blue, bluePos, "blue");
+          blueMove();
+        }
+        else if(chip === 2 && purplePos !== -1){
+          funcDown(purple, purplePos, "purple");
+          purpleMove();
+        }
+        else if(chip === 3 && orangePos !== -1){
+          funcDown(orange, orangePos, "orange");
+          orangeMove();
+        }
+        else if(chip === 4 && greenPos !== -1){
+          funcDown(green, greenPos, "green");
+          greenMove();
+        }
+        else if(chip === 5 && gray1Pos !== -1){
+          funcDown(gray1, gray1Pos, "gray1");
+          gray1Move();
+        }
+        else if(chip === 6 && gray2Pos !== -1){
+          funcDown(gray2, gray2Pos, "gray2");
+          gray2Move();
+        }
+        else if(chip === 7 && gray3Pos !== -1){
+          funcDown(gray3, gray3Pos, "gray3");
+          gray3Move();
+        }
+        else if(chip === 8 && gray4Pos !== -1){
+          funcDown(gray4, gray4Pos, "gray4");
+          gray4Move();
+        }
+        win();
+        number();
+      });
+      function funcGeneral(num, numPos, string) {
+        if(e.key === "ArrowLeft" || e.keyCode === 37){
+          funcLeft(num, numPos, string);
+        } else if(e.key === "ArrowUp" || e.keyCode === 38){
+          funcUp(num, numPos, string);
+        } else if(e.key === "ArrowRight" || e.keyCode === 39){
+          funcRight(num, numPos, string);
+        } else if(e.key === "ArrowDown" || e.keyCode === 40){
+          funcDown(num, numPos, string);
+        }
+      }
       if(e.key === "1" || e.keyCode === 97){
         chip = 1;
       } else if(e.key === "2" || e.keyCode === 98){
@@ -771,481 +1190,38 @@ export default function L10(props) {
         chip = 8;
       }
       if(chip === 1 && bluePos !== -1){
-        if(purple[bluePos - 1] === 0 && orange[bluePos - 1] === 0 && green[bluePos - 1] === 0
-          && gray1[bluePos - 1] === 0 && gray2[bluePos - 1] === 0 && gray3[bluePos - 1] === 0 && gray4[bluePos - 1] === 0
-          && bluePos % 3 !== 0 && (e.key === "ArrowLeft" || e.keyCode === 37)){
-          turnMoveLeft(bluePos);
-          if(allow === 1){
-            blue[bluePos] = 0;
-            $(`.circle${bluePos + 1}`).removeClass("blue");
-            bluePos--;
-            blue[bluePos] = 1;
-            $(`.circle${bluePos + 1}`).addClass("blue");
-            win();
-          } else{
-            allow = 1;
-          }
-        } else if(purple[bluePos - 3] === 0 && orange[bluePos - 3] === 0 && green[bluePos - 3] === 0
-          && gray1[bluePos - 3] === 0 && gray2[bluePos - 3] === 0 && gray3[bluePos - 3] === 0 && gray4[bluePos - 3] === 0
-          && bluePos >= 3 && (e.key === "ArrowUp" || e.keyCode === 38)){
-          turnMoveUp(bluePos);
-          if(allow === 1){
-            blue[bluePos] = 0;
-            $(`.circle${bluePos + 1}`).removeClass("blue");
-            bluePos-=3;
-            blue[bluePos] = 1;
-            $(`.circle${bluePos + 1}`).addClass("blue");
-            win();
-          } else{
-            allow = 1;
-          }
-        } else if(purple[bluePos + 1] === 0 && orange[bluePos + 1] === 0 && green[bluePos + 1] === 0
-          && gray1[bluePos + 1] === 0 && gray2[bluePos + 1] === 0 && gray3[bluePos + 1] === 0 && gray4[bluePos + 1] === 0
-          && bluePos % 3 !== 2 && (e.key === "ArrowRight" || e.keyCode === 39)){
-          turnMoveRight(bluePos);
-          if(allow === 1){
-            blue[bluePos] = 0;
-            $(`.circle${bluePos + 1}`).removeClass("blue");
-            bluePos++;
-            blue[bluePos] = 1;
-            $(`.circle${bluePos + 1}`).addClass("blue");
-            win();
-          } else{
-            allow = 1;
-          }
-        } else if(purple[bluePos + 3] === 0 && orange[bluePos + 3] === 0 && green[bluePos + 3] === 0
-          && gray1[bluePos + 3] === 0 && gray2[bluePos + 3] === 0 && gray3[bluePos + 3] === 0 && gray4[bluePos + 3] === 0
-          && bluePos <= 5 && (e.key === "ArrowDown" || e.keyCode === 40)){
-          turnMoveDown(bluePos);
-          if(allow === 1){
-            blue[bluePos] = 0;
-            $(`.circle${bluePos + 1}`).removeClass("blue");
-            bluePos+=3;
-            blue[bluePos] = 1;
-            $(`.circle${bluePos + 1}`).addClass("blue");
-            win();
-          } else{
-            allow = 1;
-          }
-        }
+        funcGeneral(blue, bluePos, "blue");
+        blueMove();
       }
       else if(chip === 2 && purplePos !== -1){
-        if(blue[purplePos - 1] === 0 && orange[purplePos - 1] === 0 && green[purplePos - 1] === 0
-          && gray1[purplePos - 1] === 0 && gray2[purplePos - 1] === 0 && gray3[purplePos - 1] === 0 && gray4[purplePos - 1] === 0
-          && purplePos % 3 !== 0 && (e.key === "ArrowLeft" || e.keyCode === 37)){
-          turnMoveLeft(purplePos);
-          if(allow === 1){
-            purple[purplePos] = 0;
-            $(`.circle${purplePos + 1}`).removeClass("purple");
-            purplePos--;
-            purple[purplePos] = 1;
-            $(`.circle${purplePos + 1}`).addClass("purple");
-            win();
-          } else{
-            allow = 1;
-          }
-        } else if(blue[purplePos - 3] === 0 && orange[purplePos - 3] === 0 && green[purplePos - 3] === 0
-          && gray1[purplePos - 3] === 0 && gray2[purplePos - 3] === 0 && gray3[purplePos - 3] === 0 && gray4[purplePos - 3] === 0
-          && purplePos >= 3 && (e.key === "ArrowUp" || e.keyCode === 38)){
-          turnMoveUp(purplePos);
-          if(allow === 1){
-            purple[purplePos] = 0;
-            $(`.circle${purplePos + 1}`).removeClass("purple");
-            purplePos-=3;
-            purple[purplePos] = 1;
-            $(`.circle${purplePos + 1}`).addClass("purple");
-            win();
-          } else{
-            allow = 1;
-          }
-        } else if(blue[purplePos + 1] === 0 && orange[purplePos + 1] === 0 && green[purplePos + 1] === 0
-          && gray1[purplePos + 1] === 0 && gray2[purplePos + 1] === 0 && gray3[purplePos + 1] === 0 && gray4[purplePos + 1] === 0
-          && purplePos % 3 !== 2 && (e.key === "ArrowRight" || e.keyCode === 39)){
-          turnMoveRight(purplePos);
-          if(allow === 1){
-            purple[purplePos] = 0;
-            $(`.circle${purplePos + 1}`).removeClass("purple");
-            purplePos++;
-            purple[purplePos] = 1;
-            $(`.circle${purplePos + 1}`).addClass("purple");
-            win();
-          } else{
-            allow = 1;
-          }
-        } else if(blue[purplePos + 3] === 0 && orange[purplePos + 3] === 0 && green[purplePos + 3] === 0
-          && gray1[purplePos + 3] === 0 && gray2[purplePos + 3] === 0 && gray3[purplePos + 3] === 0 && gray4[purplePos + 3] === 0
-          && purplePos <= 5 && (e.key === "ArrowDown" || e.keyCode === 40)){
-          turnMoveDown(purplePos);
-          if(allow === 1){
-            purple[purplePos] = 0;
-            $(`.circle${purplePos + 1}`).removeClass("purple");
-            purplePos+=3;
-            purple[purplePos] = 1;
-            $(`.circle${purplePos + 1}`).addClass("purple");
-            win();
-          } else{
-            allow = 1;
-          }
-        }
+        funcGeneral(purple, purplePos, "purple");
+        purpleMove();
       }
       else if(chip === 3 && orangePos !== -1){
-        if(blue[orangePos - 1] === 0 && purple[orangePos - 1] === 0 && green[orangePos - 1] === 0
-          && gray1[orangePos - 1] === 0 && gray2[orangePos - 1] === 0 && gray3[orangePos - 1] === 0 && gray4[orangePos - 1] === 0
-          && orangePos % 3 !== 0 && (e.key === "ArrowLeft" || e.keyCode === 37)){
-          turnMoveLeft(orangePos);
-          if(allow === 1){
-            orange[orangePos] = 0;
-            $(`.circle${orangePos + 1}`).removeClass("orange");
-            orangePos--;
-            orange[orangePos] = 1;
-            $(`.circle${orangePos + 1}`).addClass("orange");
-            win();
-          } else{
-            allow = 1;
-          }
-        } else if(blue[orangePos - 3] === 0 && purple[orangePos - 3] === 0 && green[orangePos - 3] === 0
-          && gray1[orangePos - 3] === 0 && gray2[orangePos - 3] === 0 && gray3[orangePos - 3] === 0 && gray4[orangePos - 3] === 0
-          && orangePos >= 3 && (e.key === "ArrowUp" || e.keyCode === 38)){
-          turnMoveUp(orangePos);
-          if(allow === 1){
-            orange[orangePos] = 0;
-            $(`.circle${orangePos + 1}`).removeClass("orange");
-            orangePos-=3;
-            orange[orangePos] = 1;
-            $(`.circle${orangePos + 1}`).addClass("orange");
-            win();
-          } else{
-            allow = 1;
-          }
-        } else if(blue[orangePos + 1] === 0 && purple[orangePos + 1] === 0 && green[orangePos + 1] === 0
-          && gray1[orangePos + 1] === 0 && gray2[orangePos + 1] === 0 && gray3[orangePos + 1] === 0 && gray4[orangePos + 1] === 0
-          && orangePos % 3 !== 2 && (e.key === "ArrowRight" || e.keyCode === 39)){
-          turnMoveRight(orangePos);
-          if(allow === 1){
-            orange[orangePos] = 0;
-            $(`.circle${orangePos + 1}`).removeClass("orange");
-            orangePos++;
-            orange[orangePos] = 1;
-            $(`.circle${orangePos + 1}`).addClass("orange");
-            win();
-          } else{
-            allow = 1;
-          }
-        } else if(blue[orangePos + 3] === 0 && purple[orangePos + 3] === 0 && green[orangePos + 3] === 0
-          && gray1[orangePos + 3] === 0 && gray2[orangePos + 3] === 0 && gray3[orangePos + 3] === 0 && gray4[orangePos + 3] === 0
-          && orangePos <= 5 && (e.key === "ArrowDown" || e.keyCode === 40)){
-          turnMoveDown(orangePos);
-          if(allow === 1){
-            orange[orangePos] = 0;
-            $(`.circle${orangePos + 1}`).removeClass("orange");
-            orangePos+=3;
-            orange[orangePos] = 1;
-            $(`.circle${orangePos + 1}`).addClass("orange");
-            win();
-          } else{
-            allow = 1;
-          }
-        }
+        funcGeneral(orange, orangePos, "orange");
+        orangeMove();
       }
       else if(chip === 4 && greenPos !== -1){
-        if(blue[greenPos - 1] === 0 && purple[greenPos - 1] === 0 && orange[greenPos - 1] === 0
-          && gray1[greenPos - 1] === 0 && gray2[greenPos - 1] === 0 && gray3[greenPos - 1] === 0 && gray4[greenPos - 1] === 0
-          && greenPos % 3 !== 0 && (e.key === "ArrowLeft" || e.keyCode === 37)){
-          turnMoveLeft(greenPos);
-          if(allow === 1){
-            green[greenPos] = 0;
-            $(`.circle${greenPos + 1}`).removeClass("green");
-            greenPos--;
-            green[greenPos] = 1;
-            $(`.circle${greenPos + 1}`).addClass("green");
-            win();
-          } else{
-            allow = 1;
-          }
-        } else if(blue[greenPos - 3] === 0 && purple[greenPos - 3] === 0 && orange[greenPos - 3] === 0
-          && gray1[greenPos - 3] === 0 && gray2[greenPos - 3] === 0 && gray3[greenPos - 3] === 0 && gray4[greenPos - 3] === 0
-          && greenPos >= 3 && (e.key === "ArrowUp" || e.keyCode === 38)){
-          turnMoveUp(greenPos);
-          if(allow === 1){
-            green[greenPos] = 0;
-            $(`.circle${greenPos + 1}`).removeClass("green");
-            greenPos-=3;
-            green[greenPos] = 1;
-            $(`.circle${greenPos + 1}`).addClass("green");
-            win();
-          } else{
-            allow = 1;
-          }
-        } else if(blue[greenPos + 1] === 0 && purple[greenPos + 1] === 0 && orange[greenPos + 1] === 0
-          && gray1[greenPos + 1] === 0 && gray2[greenPos + 1] === 0 && gray3[greenPos + 1] === 0 && gray4[greenPos + 1] === 0
-          && greenPos % 3 !== 2 && (e.key === "ArrowRight" || e.keyCode === 39)){
-          turnMoveRight(greenPos);
-          if(allow === 1){
-            green[greenPos] = 0;
-            $(`.circle${greenPos + 1}`).removeClass("green");
-            greenPos++;
-            green[greenPos] = 1;
-            $(`.circle${greenPos + 1}`).addClass("green");
-            win();
-          } else{
-            allow = 1;
-          }
-        } else if(blue[greenPos + 3] === 0 && purple[greenPos + 3] === 0 && orange[greenPos + 3] === 0
-          && gray1[greenPos + 3] === 0 && gray2[greenPos + 3] === 0 && gray3[greenPos + 3] === 0 && gray4[greenPos + 3] === 0
-          && greenPos <= 5 && (e.key === "ArrowDown" || e.keyCode === 40)){
-          turnMoveDown(greenPos);
-          if(allow === 1){
-            green[greenPos] = 0;
-            $(`.circle${greenPos + 1}`).removeClass("green");
-            greenPos+=3;
-            green[greenPos] = 1;
-            $(`.circle${greenPos + 1}`).addClass("green");
-            win();
-          } else{
-            allow = 1;
-          }
-        }
+        funcGeneral(green, greenPos, "green");
+        greenMove();
       }
       else if(chip === 5 && gray1Pos !== -1){
-        if(blue[gray1Pos - 1] === 0 && purple[gray1Pos - 1] === 0 && orange[gray1Pos - 1] === 0
-          && green[gray1Pos - 1] === 0 && gray2[gray1Pos - 1] === 0 && gray3[gray1Pos - 1] === 0 && gray4[gray1Pos - 1] === 0
-          && (e.key === "ArrowLeft" || e.keyCode === 37) && gray1Pos % 3 !== 0){
-          turnMoveLeft(gray1Pos);
-          if(allow === 1){
-            gray1[gray1Pos] = 0;
-            $(`.circle${gray1Pos + 1}`).removeClass("gray1");
-            gray1Pos--;
-            gray1[gray1Pos] = 1;
-            $(`.circle${gray1Pos + 1}`).addClass("gray1");
-            //gray1Move();
-          } else{
-            allow = 1;
-          }
-        } else if(blue[gray1Pos - 3] === 0 && purple[gray1Pos - 3] === 0 && orange[gray1Pos - 3] === 0
-          && green[gray1Pos - 3] === 0 && gray2[gray1Pos - 3] === 0 && gray3[gray1Pos - 3] === 0 && gray4[gray1Pos - 3] === 0
-          && (e.key === "ArrowUp" || e.keyCode === 38) && gray1Pos >= 3){
-          turnMoveUp(gray1Pos);
-          if(allow === 1){
-            gray1[gray1Pos] = 0;
-            $(`.circle${gray1Pos + 1}`).removeClass("gray1");
-            gray1Pos-=3;
-            gray1[gray1Pos] = 1;
-            $(`.circle${gray1Pos + 1}`).addClass("gray1");
-            //gray1Move();
-          } else{
-            allow = 1;
-          }
-        } else if(blue[gray1Pos + 1] === 0 && purple[gray1Pos + 1] === 0 && orange[gray1Pos + 1] === 0
-          && green[gray1Pos + 1] === 0 && gray2[gray1Pos + 1] === 0 && gray3[gray1Pos + 1] === 0 && gray4[gray1Pos + 1] === 0
-          && (e.key === "ArrowRight" || e.keyCode === 39) && gray1Pos % 3 !== 2){
-          turnMoveRight(gray1Pos);
-          if(allow === 1){
-            gray1[gray1Pos] = 0;
-            $(`.circle${gray1Pos + 1}`).removeClass("gray1");
-            gray1Pos++;
-            gray1[gray1Pos] = 1;
-            $(`.circle${gray1Pos + 1}`).addClass("gray1");
-            //gray1Move();
-          } else{
-            allow = 1;
-          }
-        } else if(blue[gray1Pos + 3] === 0 && purple[gray1Pos + 3] === 0 && orange[gray1Pos + 3] === 0
-          && green[gray1Pos + 3] === 0 && gray2[gray1Pos + 3] === 0 && gray3[gray1Pos + 3] === 0 && gray4[gray1Pos + 3] === 0
-          && (e.key === "ArrowDown" || e.keyCode === 40) && gray1Pos <= 5){
-          turnMoveDown(gray1Pos);
-          if(allow === 1){
-            gray1[gray1Pos] = 0;
-            $(`.circle${gray1Pos + 1}`).removeClass("gray1");
-            gray1Pos+=3;
-            gray1[gray1Pos] = 1;
-            $(`.circle${gray1Pos + 1}`).addClass("gray1");
-            //gray1Move();
-          } else{
-            allow = 1;
-          }
-        }
+        funcGeneral(gray1, gray1Pos, "gray1");
+        gray1Move();
       }
       else if(chip === 6 && gray2Pos !== -1){
-        if(blue[gray2Pos - 1] === 0 && purple[gray2Pos - 1] === 0 && orange[gray2Pos - 1] === 0
-          && green[gray2Pos - 1] === 0 && gray1[gray2Pos - 1] === 0 && gray3[gray2Pos - 1] === 0 && gray4[gray2Pos - 1] === 0
-          && (e.key === "ArrowLeft" || e.keyCode === 37) && gray2Pos % 3 !== 0){
-          turnMoveLeft(gray2Pos);
-          if(allow === 1){
-            gray2[gray2Pos] = 0;
-            $(`.circle${gray2Pos + 1}`).removeClass("gray2");
-            gray2Pos--;
-            gray2[gray2Pos] = 1;
-            $(`.circle${gray2Pos + 1}`).addClass("gray2");
-            //gray2Move();
-          } else{
-            allow = 1;
-          }
-        } else if(blue[gray2Pos - 3] === 0 && purple[gray2Pos - 3] === 0 && orange[gray2Pos - 3] === 0
-          && green[gray2Pos - 3] === 0 && gray1[gray2Pos - 3] === 0 && gray3[gray2Pos - 3] === 0 && gray4[gray2Pos - 3] === 0
-          && (e.key === "ArrowUp" || e.keyCode === 38) && gray2Pos >= 3){
-          turnMoveUp(gray2Pos);
-          if(allow === 1){
-            gray2[gray2Pos] = 0;
-            $(`.circle${gray2Pos + 1}`).removeClass("gray2");
-            gray2Pos-=3;
-            gray2[gray2Pos] = 1;
-            $(`.circle${gray2Pos + 1}`).addClass("gray2");
-            //gray2Move();
-          } else{
-            allow = 1;
-          }
-        } else if(blue[gray2Pos + 1] === 0 && purple[gray2Pos + 1] === 0 && orange[gray2Pos + 1] === 0
-          && green[gray2Pos + 1] === 0 && gray1[gray2Pos + 1] === 0 && gray3[gray2Pos + 1] === 0 && gray4[gray2Pos + 1] === 0
-          && (e.key === "ArrowRight" || e.keyCode === 39) && gray2Pos % 3 !== 2){
-          turnMoveRight(gray2Pos);
-          if(allow === 1){
-            gray2[gray2Pos] = 0;
-            $(`.circle${gray2Pos + 1}`).removeClass("gray2");
-            gray2Pos++;
-            gray2[gray2Pos] = 1;
-            $(`.circle${gray2Pos + 1}`).addClass("gray2");
-            //gray2Move();
-          } else{
-            allow = 1;
-          }
-        } else if(blue[gray2Pos + 3] === 0 && purple[gray2Pos + 3] === 0 && orange[gray2Pos + 3] === 0
-          && green[gray2Pos + 3] === 0 && gray1[gray2Pos + 3] === 0 && gray3[gray2Pos + 3] === 0 && gray4[gray2Pos + 3] === 0
-          && (e.key === "ArrowDown" || e.keyCode === 40) && gray2Pos <= 5){
-          turnMoveDown(gray2Pos);
-          if(allow === 1){
-            gray2[gray2Pos] = 0;
-            $(`.circle${gray2Pos + 1}`).removeClass("gray2");
-            gray2Pos+=3;
-            gray2[gray2Pos] = 1;
-            $(`.circle${gray2Pos + 1}`).addClass("gray2");
-            //gray2Move();
-          } else{
-            allow = 1;
-          }
-        }
+        funcGeneral(gray2, gray2Pos, "gray2");
+        gray2Move();
       }
       else if(chip === 7 && gray3Pos !== -1){
-        if(blue[gray3Pos - 1] === 0 && purple[gray3Pos - 1] === 0 && orange[gray3Pos - 1] === 0
-          && green[gray3Pos - 1] === 0 && gray1[gray3Pos - 1] === 0 && gray2[gray3Pos - 1] === 0 && gray4[gray3Pos - 1] === 0
-          && (e.key === "ArrowLeft" || e.keyCode === 37) && gray3Pos % 3 !== 0){
-          turnMoveLeft(gray3Pos);
-          if(allow === 1){
-            gray3[gray3Pos] = 0;
-            $(`.circle${gray3Pos + 1}`).removeClass("gray3");
-            gray3Pos--;
-            gray3[gray3Pos] = 1;
-            $(`.circle${gray3Pos + 1}`).addClass("gray3");
-            //gray3Move();
-          } else{
-            allow = 1;
-          }
-        } else if(blue[gray3Pos - 3] === 0 && purple[gray3Pos - 3] === 0 && orange[gray3Pos - 3] === 0
-          && green[gray3Pos - 3] === 0 && gray1[gray3Pos - 3] === 0 && gray2[gray3Pos - 3] === 0 && gray4[gray3Pos - 3] === 0
-          && (e.key === "ArrowUp" || e.keyCode === 38) && gray3Pos >= 3){
-          turnMoveUp(gray3Pos);
-          if(allow === 1){
-            gray3[gray3Pos] = 0;
-            $(`.circle${gray3Pos + 1}`).removeClass("gray3");
-            gray3Pos-=3;
-            gray3[gray3Pos] = 1;
-            $(`.circle${gray3Pos + 1}`).addClass("gray3");
-            //gray3Move();
-          } else{
-            allow = 1;
-          }
-        } else if(blue[gray3Pos + 1] === 0 && purple[gray3Pos + 1] === 0 && orange[gray3Pos + 1] === 0
-          && green[gray3Pos + 1] === 0 && gray1[gray3Pos + 1] === 0 && gray2[gray3Pos + 1] === 0 && gray4[gray3Pos + 1] === 0
-          && (e.key === "ArrowRight" || e.keyCode === 39) && gray3Pos % 3 !== 2){
-          turnMoveRight(gray3Pos);
-          if(allow === 1){
-            gray3[gray3Pos] = 0;
-            $(`.circle${gray3Pos + 1}`).removeClass("gray3");
-            gray3Pos++;
-            gray3[gray3Pos] = 1;
-            $(`.circle${gray3Pos + 1}`).addClass("gray3");
-            //gray3Move();
-          } else{
-            allow = 1;
-          }
-        } else if(blue[gray3Pos + 3] === 0 && purple[gray3Pos + 3] === 0 && orange[gray3Pos + 3] === 0
-          && green[gray3Pos + 3] === 0 && gray1[gray3Pos + 3] === 0 && gray2[gray3Pos + 3] === 0 && gray4[gray3Pos + 3] === 0
-          && (e.key === "ArrowDown" || e.keyCode === 40) && gray3Pos <= 5){
-          turnMoveDown(gray3Pos);
-          if(allow === 1){
-            gray3[gray3Pos] = 0;
-            $(`.circle${gray3Pos + 1}`).removeClass("gray3");
-            gray3Pos+=3;
-            gray3[gray3Pos] = 1;
-            $(`.circle${gray3Pos + 1}`).addClass("gray3");
-            //gray3Move();
-          } else{
-            allow = 1;
-          }
-        }
+        funcGeneral(gray3, gray3Pos, "gray3");
+        gray3Move();
       }
       else if(chip === 8 && gray4Pos !== -1){
-        if(blue[gray4Pos - 1] === 0 && purple[gray4Pos - 1] === 0 && orange[gray4Pos - 1] === 0
-          && green[gray4Pos - 1] === 0 && gray1[gray4Pos - 1] === 0 && gray2[gray4Pos - 1] === 0 && gray3[gray4Pos - 1] === 0
-          && (e.key === "ArrowLeft" || e.keyCode === 37) && gray4Pos % 3 !== 0){
-          turnMoveLeft(gray4Pos);
-          if(allow === 1){
-            gray4[gray4Pos] = 0;
-            $(`.circle${gray4Pos + 1}`).removeClass("gray4");
-            gray4Pos--;
-            gray4[gray4Pos] = 1;
-            $(`.circle${gray4Pos + 1}`).addClass("gray4");
-            //gray4Move();
-            /*
-            $(`.circle${gray4Pos + 1}`).removeClass("gray4");
-            gray4Pos--;
-            $(`.circle${gray4Pos + 1}`).addClass("gray4");*/
-          } else{
-            allow = 1;
-          }
-        } else if(blue[gray4Pos - 3] === 0 && purple[gray4Pos - 3] === 0 && orange[gray4Pos - 3] === 0
-          && green[gray4Pos - 3] === 0 && gray1[gray4Pos - 3] === 0 && gray2[gray4Pos - 3] === 0 && gray3[gray4Pos - 3] === 0
-          && (e.key === "ArrowUp" || e.keyCode === 38) && gray4Pos >= 3){
-          turnMoveUp(gray4Pos);
-          if(allow === 1){
-            gray4[gray4Pos] = 0;
-            $(`.circle${gray4Pos + 1}`).removeClass("gray4");
-            gray4Pos-=3;
-            gray4[gray4Pos] = 1;
-            $(`.circle${gray4Pos + 1}`).addClass("gray4");
-            //gray4Move();
-          } else{
-            allow = 1;
-          }
-        } else if(blue[gray4Pos + 1] === 0 && purple[gray4Pos + 1] === 0 && orange[gray4Pos + 1] === 0
-          && green[gray4Pos + 1] === 0 && gray1[gray4Pos + 1] === 0 && gray2[gray4Pos + 1] === 0 && gray3[gray4Pos + 1] === 0
-          && (e.key === "ArrowRight" || e.keyCode === 39) && gray4Pos % 3 !== 2){
-          turnMoveRight(gray4Pos);
-          if(allow === 1){
-            gray4[gray4Pos] = 0;
-            $(`.circle${gray4Pos + 1}`).removeClass("gray4");
-            gray4Pos++;
-            gray4[gray4Pos] = 1;
-            $(`.circle${gray4Pos + 1}`).addClass("gray4");
-            //gray4Move();
-          } else{
-            allow = 1;
-          }
-        } else if(blue[gray4Pos + 3] === 0 && purple[gray4Pos + 3] === 0 && orange[gray4Pos + 3] === 0
-          && green[gray4Pos + 3] === 0 && gray1[gray4Pos + 3] === 0 && gray2[gray4Pos + 3] === 0 && gray3[gray4Pos + 3] === 0
-          && (e.key === "ArrowDown" || e.keyCode === 40) && gray4Pos <= 5){
-          turnMoveDown(gray4Pos);
-          if(allow === 1){
-            gray4[gray4Pos] = 0;
-            $(`.circle${gray4Pos + 1}`).removeClass("gray4");
-            gray4Pos+=3;
-            gray4[gray4Pos] = 1;
-            $(`.circle${gray4Pos + 1}`).addClass("gray4");
-            //gray4Move();
-          } else{
-            allow = 1;
-          }
-        }
+        funcGeneral(gray4, gray4Pos, "gray4");
+        gray4Move();
       }
+      win();
       number();
     });
   });

@@ -44,6 +44,7 @@ function Rules() {
         <br /> обратной стороне карточки с заданием.
       </p>
       <button type="button"><Link to="/"style={{color: "black"}}>Назад</Link></button>
+      <Outlet />
     </div>
   );
 }

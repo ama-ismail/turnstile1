@@ -20,6 +20,7 @@ export default function Control() {
         Стрелка вниз для движение вниз <br />
       </p>
       <button type="button"><Link to="/"style={{color: "black"}}>Назад</Link></button>
+      <Outlet />
     </div>
   );
 }

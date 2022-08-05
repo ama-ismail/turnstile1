@@ -47,6 +47,20 @@ export default function Field() {
           <div className="support4"></div>
         </div>
       </div>
+      <div>
+        <div className="UP">
+          <i className="fa fa-long-arrow-up"></i>
+        </div>
+        <div className="LEFT">
+          <i className="fa fa-long-arrow-left"></i>
+        </div>
+        <div className="DOWN">
+          <i className="fa fa-long-arrow-down"></i>
+        </div>
+        <div className="RIGHT">
+          <i className="fa fa-long-arrow-right"></i>
+        </div>
+      </div>
     </div>
   );
 }

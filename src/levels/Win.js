@@ -9,6 +9,7 @@ function L1() {
       <Confetti/>
       <h1 className="win">Поздравляю, вы победили!</h1>
       <button type="button" style={{position: "absolute", top: "10px", left: "10px"}}><Link to="/game"style={{color: "black"}}>Назад</Link></button>
+      <Outlet />
     </div>
   );
 }
